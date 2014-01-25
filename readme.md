@@ -11,16 +11,16 @@ Binary number 2 is "11111"
 The product is found by choosing either #1 or #2 and moving through each bit individually, using each digit to multiply against another number then adding the sum of all those numbers together.
 
 ```
-  11111
-x 10101
----------
-      1
-   + 00
-  + 100
- + 0000
-+ 10000
+     11111
+   x 10101
+ --------- 
+	   11111
+    000000
+   1111100
+  00000000
+ 111110000
 
-1 + 00 + 100 + 0000 + 10000 = 1010001011
+11111 + 000000 + 1111100 + 00000000 + 111110000 = 1010001011
 ```
 
 ## Rules

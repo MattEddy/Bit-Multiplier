@@ -1,4 +1,4 @@
-require "./multiplier"
+require File.expand_path("../../multiplier", __FILE__)
 
 describe Multiplier do
   it "returns 0 when anything is multiplied by 0" do
@@ -22,15 +22,16 @@ describe Multiplier do
   end
 
   it "is communicative" do
+    pending
     expect(Multiplier.multiply("10", "10101")).to eq "101010"
   end
 
-  describe "multiplying a simple table of numbers" do
-    (0..5).to_a.repeated_permutation(2).each do |a, b|
-      it "correctly multiplies #{a.to_s(2)} * #{b.to_s(2)} as #{(a * b).to_s(2)}" do
-        pending
-        expect(Multiplier.multiply(a.to_s(2), b.to_s(2))).to eq((a * b).to_s(2))
-      end
-    end
-  end
+  # describe "multiplying a simple table of numbers" do
+  #   (0..5).to_a.repeated_permutation(2).each do |a, b|
+  #     it "correctly multiplies #{a.to_s(2)} * #{b.to_s(2)} as #{(a * b).to_s(2)}" do
+  #       pending
+  #       expect(Multiplier.multiply(a.to_s(2), b.to_s(2))).to eq((a * b).to_s(2))
+  #     end
+  #   end
+  # end
 end
