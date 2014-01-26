@@ -2,6 +2,8 @@
 
 Base two (binary) naturally provides an easy way to multiply two binary numbers.
 
+[Watch a binary multiplication tutorial](http://www.youtube.com/watch?v=QW0XNZPyWUk)
+
 For example:
 
 Binary number 1 is "10101"
@@ -14,7 +16,7 @@ The product is found by choosing either #1 or #2 and moving through each bit ind
      11111
    x 10101
  --------- 
-	   11111
+	 11111
     000000
    1111100
   00000000
