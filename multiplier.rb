@@ -20,33 +20,18 @@ class Multiplier
 			running_total
 		end
 	end
-
-
-	
-
-	# adder.add(sum, (b + place_holder))
-end
-
-class MaxSize
 end
 
 class Adder
 	def add(x, y)
 		sum = ""
 		carry = "0"
-	
-		if x.length > y.length
-			until y.length == x.length do
-				y = "0" + y
-			end 
-		elsif y.length > x.length 
-			until x.length == y.length do
-				x = "0" + x
-			end 
-		end
+		x = BinaryString.new(x)
+		y = BinaryString.new(y)
+		x, y = StringPadder.equalize_lengths(x, y)
 
-		x.reverse.each_char.with_index do |char, index|
-			char2 = y.split('').reverse[index]
+		x.digits_from_right.to_enum.with_index do |char, index|
+			char2 = y.digits_from_right[index]
 			if char == "0" && char2 == "0" && carry == "0"
 				sum = "0" + sum
 			elsif (char == "0" && char2 == "1" || char == "1" && char2 == "0") && carry == "0"
@@ -76,25 +61,24 @@ class Adder
 	end
 end
 
+class BinaryString < String
+	def digits_from_right
+		split('').reverse
+	end	
+end
 
-# class Boolean
-# 	def and input_string, comparison_string 
-# 		output
-# 		input_string.each_char.with_index do |char, index|
-# 			if char == comparison_string.split('')[index] && char != "O"
-# 				output.push(char)
-# 			end
-# 		end
-# 	end
-# end
+class StringPadder
+	def self.equalize_lengths(x, y)
+		if x.length > y.length
+			until y.length == x.length do
+				y = "0" + y
+			end
+		elsif y.length > x.length
+			until x.length == y.length do
+				x = "0" + x
+			end
+		end
 
-# class BitShifter
-# 	def shift_left (input_string)
-# 		input_string[1,-1]
-# 		input_string + "0"
-# 	end
-# end
-
-# class BitMask
-
-# end
+		[BinaryString.new(x), BinaryString.new(y)]
+	end
+end
