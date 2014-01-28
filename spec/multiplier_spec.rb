@@ -22,16 +22,19 @@ describe Multiplier do
   end
 
   it "is communicative" do
-    pending
     expect(Multiplier.multiply("10", "10101")).to eq "101010"
   end
 
-  # describe "multiplying a simple table of numbers" do
-  #   (0..5).to_a.repeated_permutation(2).each do |a, b|
-  #     it "correctly multiplies #{a.to_s(2)} * #{b.to_s(2)} as #{(a * b).to_s(2)}" do
-  #       pending
-  #       expect(Multiplier.multiply(a.to_s(2), b.to_s(2))).to eq((a * b).to_s(2))
-  #     end
-  #   end
-  # end
+  it "solves the shitty guy" do
+    expect(Multiplier.multiply("11", "11")).to eq "1001"
+  end
+
+
+  describe "multiplying a simple table of numbers" do
+    (0..5).to_a.repeated_permutation(2).each do |a, b|
+      it "correctly multiplies #{a.to_s(2)} * #{b.to_s(2)} as #{(a * b).to_s(2)}" do
+        expect(Multiplier.multiply(a.to_s(2), b.to_s(2))).to eq((a * b).to_s(2))
+      end
+    end
+  end
 end
