@@ -3,20 +3,31 @@ class Multiplier
 	OFF = "0"
 
 	def self.multiply(a, b)
+		opManage = OperationManager.new
+		numbers_to_add_together = opManage.numbers_to_add_together(a,b)
+		opManage.add_numbers_together(numbers_to_add_together)
+	end
 
+end
 
-		adder = Adder.new
+class OperationManager
+	attr_reader :adder
+	def initialize
+		@adder = Adder.new
+	end
+
+	def numbers_to_add_together(a,b)
 		place_holder = ""
-		sum = "0"	  
-
 		numbers_to_add_together = a.reverse.each_char.map do |char|
 			result = char == "1" ? b + place_holder : "0"
 			place_holder = place_holder + "0"
 			result
 		end
+	end
 
-		result = numbers_to_add_together.inject("0") do |running_total, number|
-			running_total = Adder.new.add(running_total, number)
+	def add_numbers_together(nums_to_add_together)
+		result = nums_to_add_together.inject("0") do |running_total, number|
+			running_total = Adder.new.add(BinaryString.new(running_total),BinaryString.new(number))
 			running_total
 		end
 	end
@@ -26,8 +37,6 @@ class Adder
 	def add(x, y)
 		sum = ""
 		carry = "0"
-		x = BinaryString.new(x)
-		y = BinaryString.new(y)
 		x, y = StringPadder.equalize_lengths(x, y)
 
 		x.digits_from_right.to_enum.with_index do |char, index|
@@ -65,6 +74,10 @@ class BinaryString < String
 	def digits_from_right
 		split('').reverse
 	end	
+
+	def shift_left(num_digits)
+		
+	end
 end
 
 class StringPadder
